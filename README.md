@@ -1,6 +1,3 @@
-# chocotravel-test
-Markup and filter logic for airline tickets page
-
 # app
 
 ## Project setup
