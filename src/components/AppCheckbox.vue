@@ -7,12 +7,12 @@
 
 <script>
 export default {
-    name: 'app-checkbox',
-    props: {
-        value: {
-            type: Boolean,
-            required: true
-        }
-    }
-}
+  name: 'app-checkbox',
+  props: {
+    value: {
+      type: Boolean,
+      required: true,
+    },
+  },
+};
 </script>

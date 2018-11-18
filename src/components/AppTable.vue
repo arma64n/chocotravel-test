@@ -7,7 +7,7 @@
                 <div class="g-table__heading tablet-hidden" style="width: 9rem; box-sizing: content-box">Выбор времени</div>
                 <div class="g-table__heading" >Вылет - посадка</div>
                 <div class="g-table__heading g-table__heading--sortable xs-hidden" @click="sortBy('flightDuration')">
-                    Время в пути 
+                    Время в пути
                     <span v-if="currentSort === 'flightDuration'">
                         <template v-if="ascending">&#9650;</template>
                         <template v-else>&#9660;</template>
@@ -56,42 +56,40 @@
 
 <script>
 export default {
-    name: 'app-table',
-    props: {
-        list: {
-            type: Array,
-            required: true,
-            
-        }
+  name: 'app-table',
+  props: {
+    list: {
+      type: Array,
+      required: true,
+
     },
-    data() {
-        return {
-            ascending: true,
-            currentSort: ''
-        }
+  },
+  data() {
+    return {
+      ascending: true,
+      currentSort: '',
+    };
+  },
+  filters: {
+    tenge(val) {
+      if (!val) return '';
+      return `${val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')} ₸`;
     },
-    filters: {
-        tenge(val) {
-            if (!val) return ""
-            return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " ₸"
-        },
-        duration(val) {
-            let hours = Math.floor(val / 60)
-            let mins = val % 60
-            return `${hours}ч ${mins}м`
-        }
+    duration(val) {
+      const hours = Math.floor(val / 60);
+      const mins = val % 60;
+      return `${hours}ч ${mins}м`;
     },
-    methods: {
-        //Сортировка полей
-        sortBy(val) {
-            this.currentSort = val
-            this.ascending = !this.ascending
-            return this.list.sort((a, b) => {
-                return this.ascending ? a[val] - b[val] : b[val] - a[val]
-            })
-        }
-    }
-}
+  },
+  methods: {
+    // Сортировка полей
+    sortBy(val) {
+      this.currentSort = val;
+      this.ascending = !this.ascending;
+      return this.list.sort((a, b) => (this.ascending ? a[val] - b[val] : b[val] - a[val]));
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -102,7 +100,7 @@ export default {
 
     &--arrow {
         position: relative;
-        
+
         &:after {
             content: '';
             position: absolute;
@@ -120,4 +118,3 @@ export default {
     }
 }
 </style>
-
